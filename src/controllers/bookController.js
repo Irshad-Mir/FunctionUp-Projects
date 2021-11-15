@@ -60,8 +60,10 @@ const getBooksData= async function (req, res) {
         let c=  a+b
         console.log(c)
 
+
+
         
-        let allBooks= await BookModel.find() // without await, this line will start to get executed..but the server will move to next line without COMPLETING the execution..this might cause code to break in the next few lines
+        let allBooks= await BookModel.find( { "prices.europeanPrice" : "4Pounds"} ) // without await, this line will start to get executed..but the server will move to next line without COMPLETING the execution..this might cause code to break in the next few lines
         // hence we use await to ask the program to wait for the completion of this line..till this line completes, execution wont move to next line
 
         // await is typically used at 2 places:
