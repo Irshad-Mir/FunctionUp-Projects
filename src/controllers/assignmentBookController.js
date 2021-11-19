@@ -2,6 +2,7 @@ const BookModel = require("../models/bookModel.js")
 const moment= require("moment")
 const mongoose = require("mongoose")
 const bookModel = require("../models/bookModel.js")
+const newBookModel = require("../models/newBookModel.js")
 // Task 1- Create a collection of 11+ books.
 const createBook = async function (req, res) {
     const book = req.body
@@ -34,6 +35,13 @@ const randomBooks= async function(req, res) {
     let allBooks = await bookModel.find({$or:[ {stockAvailable: true},{ totalPages: {$gt: 500}}]})
     res.send({msg: allBooks })
 }
+
+
+
+
+
+
+
 module.exports.createBook = createBook;
 module.exports.allBooksList = allBooksList;
 module.exports.yearDetails = yearDetails;

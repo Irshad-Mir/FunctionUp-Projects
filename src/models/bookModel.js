@@ -2,15 +2,6 @@ const mongoose=require('mongoose')
 
 const bookSchema= new mongoose.Schema({
 
-//String
-//Number
-// Boolean
-// Array
-// Object
-// Date
-// Buffer
-// ObjectId
-
     bookName: {
         type: String,
         required: true
