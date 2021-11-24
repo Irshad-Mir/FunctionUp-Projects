@@ -6,6 +6,12 @@ const createBook = async function (req, res) {
   try { 
     
     const book = req.body; // book = { }
+    if (body) {
+      // jansdknajsdn
+    }
+    else {
+      res.status(400).send({msg: "BAD REquest"})
+    }
     let savedBook = await BookModel.create(book); //  .create ( { } )
     // if error above, execution will break here and move to catch
     res.status( 200 ).send({ msg: savedBook });
@@ -15,10 +21,31 @@ const createBook = async function (req, res) {
   {
     
     console.log("This is the error: ", err)
-    res.status(400).send(  { msg: "Please check your input", error: err}  )
+    res.status(500).send(  { msg: "Server error", error: err}  )
 
-    //200-  PERFECT
-    //400-  ERROR
+
+
+    // 2xx - Success
+    // 4xx - Something gone wrong..and wrong from the user side
+    // 5xx - Server side problems
+
+
+
+// // HTTP Status codes
+// - always sent with res..ONLY sent with res 
+// - specific status codes for specific success and failure scenarios
+
+// "BAD REQUEST" ...400
+
+
+// "RESOURCE NOT FOUND"...404 //404 page not found...eg. find ("asaijndianud89")...let book =bookModel.findOne({_id:"asaijndianud89"})   if (book){..} else res.status(404).send({})
+// "AUTHENTICATION MISSING"...401...if(token){...} else { res.status(401)}
+// "NOT AUTHENTICATED OR FORBIDDEN"..403 // if ( token.userId === userId) {...} else {res.status(403).send({}) }
+
+// -- try catch ....// "SERVER ERROR"...500
+
+// -- ALL GOOD... //status(200)- OK
+
   }
 
 };
