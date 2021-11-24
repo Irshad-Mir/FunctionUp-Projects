@@ -2,9 +2,25 @@ const BookModel = require("../models/bookModel.js");
 const mongoose = require("mongoose");
 
 const createBook = async function (req, res) {
-  const book = req.body;
-  let savedBook = await BookModel.create(book);
-  res.send({ msg: savedBook });
+
+  try { 
+    
+    const book = req.body; // book = { }
+    let savedBook = await BookModel.create(book); //  .create ( { } )
+    // if error above, execution will break here and move to catch
+    res.status( 200 ).send({ msg: savedBook });
+
+  }
+  catch ( err )
+  {
+    
+    console.log("This is the error: ", err)
+    res.status(400).send(  { msg: "Please check your input", error: err}  )
+
+    //200-  PERFECT
+    //400-  ERROR
+  }
+
 };
 
 const getBooksData = async function (req, res) {
